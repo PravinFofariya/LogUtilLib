@@ -4,6 +4,9 @@ plugins {
     id 'maven-publish'
 }
 
+group = 'com.github.jitpack'
+version = '1.0'
+
 android {
     compileSdk 32
 
@@ -40,3 +43,16 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
 
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.jitpack'
+                artifactId = 'android-example'
+                version = '1.0'
+            }
+        }
+    }
+}
